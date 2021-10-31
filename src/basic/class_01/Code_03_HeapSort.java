@@ -1,6 +1,7 @@
 package basic.class_01;
 
 public class Code_03_HeapSort {
+
     public static void heapSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;
@@ -8,7 +9,12 @@ public class Code_03_HeapSort {
         for (int i = 0; i < arr.length; i++) {
             heapInsert(arr, i);
         }
-
+        int heapSize = arr.length;
+        ArrayUtils.swap(arr, 0, --heapSize);
+        while (heapSize > 0) {
+            heapify(arr, 0, heapSize);
+            ArrayUtils.swap(arr, 0, --heapSize);
+        }
     }
 
     public static void heapInsert(int[] arr, int index) {

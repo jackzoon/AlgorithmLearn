@@ -1,5 +1,6 @@
 package com.halen.sort;
 
+import com.halen.sort.utils.Asserts;
 import com.halen.sort.utils.Integers;
 
 import java.util.Arrays;
@@ -8,17 +9,18 @@ public class TestSort {
     public static void main(String[] args) {
         Integer[] arr = Integers.random(10000, 1, 20000);
         testSorts(arr,
-                new HeapSort(),
-                new SelectionSort(),
-                new BubbleSort3(),
-                new BubbleSort2(),
-                new BubbleSort1()
+                new HeapSort<Integer>(),
+                new SelectionSort<Integer>(),
+                new BubbleSort3<Integer>(),
+                new InsertionSort<Integer>()
         );
     }
 
     static void testSorts(Integer[] arr, Sort... sorts) {
         for (Sort sort : sorts) {
-            sort.sort(Integers.copy(arr));
+            Integer[] newArr = Integers.copy(arr);
+            sort.sort(newArr);
+            Asserts.test(Integers.isAscOrder(newArr));
         }
         Arrays.sort(sorts);
         for (Sort sort : sorts) {

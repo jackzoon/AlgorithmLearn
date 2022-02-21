@@ -3,7 +3,7 @@ package com.halen.sort;
 
 import com.halen.sort.utils.Integers;
 
-public class BubbleSort3 extends Sort{
+public class BubbleSort3<E extends Comparable<E>> extends Sort<E>{
 
     public static void main(String[] args) {
         Integer[] arr = Integers.random(10, 1, 20);

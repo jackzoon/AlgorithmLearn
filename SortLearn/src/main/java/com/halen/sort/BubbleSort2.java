@@ -1,7 +1,7 @@
 package com.halen.sort;
 
 
-public class BubbleSort2 extends Sort{
+public class BubbleSort2<E extends Comparable<E>> extends Sort<E>{
 
     public void sort() {
         for (int end = arr.length; end > 0; end--) {

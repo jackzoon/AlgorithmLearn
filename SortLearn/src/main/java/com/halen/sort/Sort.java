@@ -1,17 +1,19 @@
 package com.halen.sort;
 
+import com.halen.sort.bean.Student;
+
 import java.text.DecimalFormat;
 
-public abstract class Sort implements Comparable<Sort>{
+public abstract class Sort<E extends Comparable<E>> implements Comparable<Sort<E>>{
 
-    protected Integer[] arr;
+    protected E[] arr;
     private int cmpCount;
     private int swapCount;
     private long time;
 
     private DecimalFormat fmt = new DecimalFormat("#.00");
 
-    public void sort(Integer[] arr) {
+    public void sort(E[] arr) {
         if (arr == null || arr.length < 2) {
             return;
         }
@@ -22,7 +24,7 @@ public abstract class Sort implements Comparable<Sort>{
     }
 
     @Override
-    public int compareTo(Sort o) {
+    public int compareTo(Sort<E> o) {
         int result = (int) (time - o.time);
         if (result != 0) {
             return result;
@@ -45,19 +47,19 @@ public abstract class Sort implements Comparable<Sort>{
      */
     protected int cmp(int i, int j) {
         cmpCount++;
-        return arr[i] - arr[j];
+        return arr[i].compareTo(arr[j]);
     }
 
-    protected int cmpElements(Integer v1, Integer v2) {
+    protected int cmp(E v1, E v2) {
         cmpCount++;
-        return v1 - v2;
+        return v1.compareTo(v2);
     }
 
     protected abstract void sort();
 
     protected void swap(int i, int j) {
         swapCount++;
-        int tmp = arr[i];
+        E tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
     }
@@ -67,7 +69,9 @@ public abstract class Sort implements Comparable<Sort>{
         String timeStr = "耗时：" + (time / 1000.0) + "s(" + time + "ms)";
         String compareCountStr = "比较：" + numberString(cmpCount);
         String swapCountStr = "交换：" + numberString(swapCount);
+        String stableStr = "稳定性: " + isStable();
         return "【" + getClass().getSimpleName() + "】\n"
+                + stableStr + " \t"
                 + timeStr + " \t"
                 + compareCountStr + "\t "
                 + swapCountStr + "\n"
@@ -80,5 +84,21 @@ public abstract class Sort implements Comparable<Sort>{
 
         if (number < 100000000) return fmt.format(number / 10000.0) + "万";
         return fmt.format(number / 100000000.0) + "亿";
+    }
+
+    private boolean isStable() {
+        Student[] students = new Student[20];
+        for (int i = 0; i < students.length; i++) {
+            students[i] = new Student(i * 10, 10);
+        }
+        sort((E[])students);
+        for (int i = 1; i < students.length; i++) {
+            int score = students[i].score;
+            int prevScore = students[i - 1].score;
+            if (score != prevScore + 10) {
+                return false;
+            }
+        }
+        return true;
     }
 }

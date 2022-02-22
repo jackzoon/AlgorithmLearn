@@ -12,7 +12,8 @@ public class TestSort {
                 new HeapSort<Integer>(),
                 new SelectionSort<Integer>(),
                 new BubbleSort3<Integer>(),
-                new InsertionSort<Integer>()
+                new InsertionSort<Integer>(),
+                new InsertionSort2<Integer>()
         );
     }
 

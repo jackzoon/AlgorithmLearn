@@ -7,13 +7,14 @@ import java.util.Arrays;
 
 public class TestSort {
     public static void main(String[] args) {
-        Integer[] arr = Integers.random(10000, 1, 20000);
+        Integer[] arr = Integers.random(20000, 1, 20000);
         testSorts(arr,
                 new HeapSort<Integer>(),
                 new SelectionSort<Integer>(),
                 new BubbleSort3<Integer>(),
                 new InsertionSort<Integer>(),
-                new InsertionSort2<Integer>()
+                new InsertionSort2<Integer>(),
+                new MergeSort<Integer>()
         );
     }
 

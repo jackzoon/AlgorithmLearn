@@ -15,7 +15,10 @@ public class TestSort {
                 new InsertionSort<Integer>(),
                 new InsertionSort2<Integer>(),
                 new MergeSort<Integer>(),
-                new QuickSort<Integer>()
+                new QuickSort<Integer>(),
+                new ShellSort<Integer>(),
+                new CountingSort(),
+                new CountingSort2()
         );
     }
 

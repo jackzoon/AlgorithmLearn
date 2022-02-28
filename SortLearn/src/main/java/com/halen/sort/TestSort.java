@@ -18,7 +18,8 @@ public class TestSort {
                 new QuickSort<Integer>(),
                 new ShellSort<Integer>(),
                 new CountingSort(),
-                new CountingSort2()
+                new CountingSort2(),
+                new RadixSort()
         );
     }
 

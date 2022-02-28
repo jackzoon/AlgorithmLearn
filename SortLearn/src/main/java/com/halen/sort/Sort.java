@@ -91,10 +91,13 @@ public abstract class Sort<E extends Comparable<E>> implements Comparable<Sort<E
             return false;
         }
         if (this instanceof CountingSort2) {
-            return false;
+            return true;
         }
         if (this instanceof ShellSort) {
             return false;
+        }
+        if (this instanceof RadixSort) {
+            return true;
         }
         Student[] students = new Student[20];
         for (int i = 0; i < students.length; i++) {
